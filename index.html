@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cen-Jhih Li (李岑志)</title>
+  <meta name="description" content="Cen-Jhih Li, PhD student at the University of Utah working on efficient LLM training and inference.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="#top">Cen-Jhih Li</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a href="Cen_Jhih_Li_CV.pdf">CV</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+
+  <!-- ============ HEADER ============ -->
+  <section class="hero" id="top">
+    <div class="hero-text">
+      <h1>Cen-Jhih Li <span class="name-zh" lang="zh-Hant">李岑志</span></h1>
+      <p class="role">Ph.D. Student in Computer Science<br><a href="https://www.cs.utah.edu/">Kahlert School of Computing, University of Utah</a></p>
+
+      <dl class="interests">
+        <dt>Research interests</dt>
+        <dd>Efficient Inference, KV-Cache Compression, Model Compression, Parameter-Efficient Fine-Tuning, In-Context Learning</dd>
+        <dt>Other interests</dt>
+        <dd>Eating great food, traveling, gaming, reading novels</dd>
+      </dl>
+
+      <div class="links">
+        <a class="pill" href="#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Contact</a>
+        <a class="pill" href="https://scholar.google.com/citations?user=SAtEvggAAAAJ"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Google Scholar</a>
+        <a class="pill" href="https://github.com/CenjhihLi"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/cen-jhih-li-392aa6173/"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+        <a class="pill pill-accent" href="Cen_Jhih_Li_CV.pdf"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>CV</a>
+      </div>
+    </div>
+
+    <img class="avatar" src="profile.jpg" alt="Cen-Jhih Li">
+  </section>
+
+  <div class="callout">
+    <strong>On the job market.</strong>
+    I am looking for research scientist / research engineer internships and full-time positions
+    in efficient LLM training and inference. Feel free to <a href="#contact">reach out</a>.
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="bio">
+    <h2>About Me</h2>
+    <p>
+      Hi! I’m Cen-Jhih, and you can also call me Steven. I’m a Ph.D. student at the Kahlert School of
+      Computing, University of Utah. I’m fortunate
+      to be advised by <a href="https://users.cs.utah.edu/~bhaskara/">Prof. Aditya Bhaskara</a>.
+      Before my Ph.D., I was a research assistant at the
+      <a href="https://www.stat.sinica.edu.tw/eng/">Institute of Statistical Science, Academia Sinica</a>,
+      where I worked with <a href="https://staff.stat.sinica.edu.tw/syhuang/">Prof. Su-Yun Huang</a>
+      on robust aggregation for federated learning. I also worked as a data scientist at Data-on-Demand,
+      applying machine learning to business decisions for clients. I received my M.S. in Statistics from
+      <a href="https://stat.nccu.edu.tw/">National Chengchi University</a>, where I worked on
+      missing-not-at-random data with
+      <a href="https://business.purdue.edu/directory/bio.php?username=ktang">Prof. Kwei Tang</a> and
+      <a href="https://stat.nccu.edu.tw/en/members/members1/TSUNG-CHI-CHENG-75202400">Prof. Tsung-Chi Cheng</a>,
+      and my B.S. in
+      <a href="https://www.math.nycu.edu.tw/introduction/e_index.php">Applied Mathematics from National Chiao Tung University</a>.
+    </p>
+    <p>
+      I’m broadly interested in utilizing algorithmic and mathematical/statistical approaches to solve
+      real-world problems, especially making large language models more efficient to adapt and serve
+      without sacrificing quality. Currently, I’m working on KV-cache selection for sparse attention in
+      long-context inference and on KV-cache quantization, including both algorithm design and GPU kernel
+      optimization using tools such as Triton to achieve real speedups and make these methods practical.
+      Previously, I worked on structured sparse fine-tuning for quantized LLMs (TMLR 2025) and studied
+      how LLMs utilize context in in-context learning. I also enjoy following the open-source training
+      and inference ecosystem, including PyTorch, vLLM, and llama.cpp, and I’m interested in bringing
+      my methods into these frameworks.
+    </p>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research">
+    <h2>Research</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Efficient LLM Inference</h3>
+        <p>KV-cache compression, including sparse attention, quantization, and KV-cache eviction, to
+          reduce memory traffic and latency during decoding. I am also interested in practical kernel
+          design to build systems that achieve real inference speedups.</p>
+      </article>
+      <article class="card">
+        <h3>Memory-Efficient Adaptation</h3>
+        <p>Structured sparse fine-tuning that selects important neurons and updates them with regular
+          dense operations, using memory-efficient zeroth-order importance estimation and
+          low-quantization-error initialization for quantized LLMs.</p>
+      </article>
+      <article class="card">
+        <h3>Context Utilization</h3>
+        <p>How LLMs utilize context: studying how to retrieve better demonstrations for in-context
+          learning and long-context reasoning, and understanding how models utilize that context, such
+          as how the position, quality, content itself, and ordering of the context affect the final
+          generation.</p>
+      </article>
+      <article class="card">
+        <h3>AI4Science</h3>
+        <p>Studying how to apply neural networks to solve PDEs and applying them to real-world physical
+          simulation problems.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section id="news">
+    <h2>News</h2>
+    <!-- Add new items at the top, dated like "Feb 2027". -->
+    <ul class="news">
+      <li><span class="date">Sep 2026</span><span>Two papers on pretraining design and reduced-order models for PDEs submitted.</span></li>
+      <li><span class="date">Aug 2026</span><span>Paper on demonstration selection for in-context learning submitted.</span></li>
+      <li><span class="date">Nov 2025</span><span>Paper on sparse fine-tuning with low quantization error published in <strong>TMLR</strong>.</span></li>
+      <li><span class="date">Jul 2025</span><span>Paper presented at the <strong>ES-FoMo Workshop @ ICML 2025</strong>.</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ PUBLICATIONS ============ -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <h3 class="subhead">Under Submission</h3>
+    <ol class="pubs">
+      <li>
+        <div class="pub-title">Pretraining Design Drives Gains in Zero-Shot PDE Rollouts</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, Tahmid Awal, Hari Sundar, Aditya Bhaskara</div>
+      </li>
+      <li>
+        <div class="pub-title">Tunable Non-linear Manifold ROMs for PDEs via Matrix-Free Petrov–Galerkin Projection</div>
+        <div class="pub-authors">Tahmid Awal, <b>Cen-Jhih Li</b>, Aditya Bhaskara, Hari Sundar</div>
+      </li>
+      <li>
+        <div class="pub-title">Revisiting What Makes a Good Context Subset: A Sparse Latent Basis Perspective</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, Siddhant Chaudhary, Aditya Bhaskara</div>
+      </li>
+    </ol>
+
+    <h3 class="subhead">Published</h3>
+    <ol class="pubs">
+      <li>
+        <div class="pub-title">An Efficient Sparse Fine-Tuning with Low Quantization Error via Neural Network Pruning</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, Aditya Bhaskara</div>
+        <div class="pub-venue"><span class="tag tag-strong">TMLR 2025</span> Transactions on Machine Learning Research</div>
+        <div class="pub-buttons">
+          <button type="button" class="pub-btn abs-toggle" aria-expanded="false">Abstract</button>
+          <a class="pub-btn" href="https://arxiv.org/abs/2502.11439">arXiv</a>
+          <a class="pub-btn" href="https://openreview.net/forum?id=w3b67v5EzD">OpenReview</a>
+          <a class="pub-btn" href="https://github.com/CenjhihLi/sparsity_finetuning">Code</a>
+          <a class="pub-btn" href="https://www.linkedin.com/feed/update/urn:li:activity:7499701079216087040/">Post: Overview</a>
+          <a class="pub-btn" href="https://www.linkedin.com/feed/update/urn:li:activity:7521259297050370048/">Post: Zeroth-Order</a>
+        </div>
+        <div class="abstract" hidden>
+          Fine-tuning is an important step in adapting foundation models such as large language models to
+          downstream tasks. To make this step more accessible to users with limited computational budgets,
+          it is crucial to develop fine-tuning methods that are memory and computationally efficient. Sparse
+          Fine-tuning (SpFT) and Low-rank adaptation (LoRA) are two frameworks that have emerged for
+          addressing this problem and have been adopted widely in practice. In this work, we develop a new
+          SpFT framework, based on ideas from neural network pruning. At a high level, we first identify
+          "important" neurons/nodes using feature importance metrics from network pruning (specifically, we
+          use the structural pruning method), and then perform fine-tuning by restricting to weights
+          involving these neurons. Experiments on common language tasks show our method improves SpFT's
+          memory efficiency by 20–50% while matching the accuracy of state-of-the-art methods like LoRA's
+          variants.
+        </div>
+
+        <!-- Earlier workshop version of the same work, shown as a sub-entry. -->
+        <div class="pub-sub">
+          <div class="pub-sub-label">Preliminary workshop version</div>
+          <div class="pub-sub-title">An Efficient Row-Based Sparse Fine-Tuning with Low Quantization Error</div>
+          <div class="pub-venue"><span class="tag">ICML 2025 Workshop</span> ES-FoMo III</div>
+          <div class="pub-buttons">
+            <a class="pub-btn" href="https://openreview.net/forum?id=HIBMFO87Cu">OpenReview</a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="pub-title">Robust Aggregation for Federated Learning by Minimum γ-Divergence Estimation</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, P.-H. Huang, Y.-T. Ma, H. Hung, Su-Yun Huang</div>
+        <div class="pub-venue"><span class="tag">Entropy 2022</span> Entropy, 24(5), 686</div>
+        <div class="pub-buttons">
+          <button type="button" class="pub-btn abs-toggle" aria-expanded="false">Abstract</button>
+          <a class="pub-btn" href="https://www.mdpi.com/1099-4300/24/5/686">Paper</a>
+          <a class="pub-btn" href="https://github.com/CenjhihLi/gamma_mean_robust_federated_learning">Code</a>
+          <a class="pub-btn" href="https://www.linkedin.com/feed/update/urn:li:activity:7502809398570995712/">Post</a>
+        </div>
+        <div class="abstract" hidden>
+          Federated learning is a framework for multiple devices or institutions, called local clients, to
+          collaboratively train a global model without sharing their data. For federated learning with a
+          central server, an aggregation algorithm integrates model information sent from local clients to
+          update the parameters for a global model. Sample mean is the simplest and most commonly used
+          aggregation method. However, it is not robust for data with outliers or under the Byzantine
+          problem, where Byzantine clients send malicious messages to interfere with the learning process.
+          Some robust aggregation methods were introduced in literature including marginal median, geometric
+          median and trimmed-mean. In this article, we propose an alternative robust aggregation method,
+          named γ-mean, which is the minimum divergence estimation based on a robust density power
+          divergence. This γ-mean aggregation mitigates the influence of Byzantine clients by assigning fewer
+          weights. This weighting scheme is data-driven and controlled by the γ value. Robustness from the
+          viewpoint of the influence function is discussed and some numerical results are presented.
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ OPEN SOURCE ============ -->
+  <section id="open-source">
+    <h2>Open-Source Contributions</h2>
+    <ul class="plain">
+      <li><strong>FastChat</strong>: integrated the google.genai API into a widely used LLM-as-a-judge evaluation toolkit, adding support for Gemini 2.5 as a judge model. <a href="https://github.com/lm-sys/FastChat/pull/3751">PR #3751</a></li>
+      <li><strong>OpenICL</strong>: updated compatibility with recent versions of Hugging Face Transformers. <a href="https://github.com/Shark-NLP/OpenICL/pull/31">PR #31</a></li>
+    </ul>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <h2>Experience &amp; Education</h2>
+    <ul class="timeline">
+      <li><span class="when">2022 – present</span><span class="what"><strong>Ph.D. in Computer Science</strong>, University of Utah<br><span class="muted">Advisor: Prof. Aditya Bhaskara</span></span></li>
+      <li><span class="when">2020 – 2022</span><span class="what"><strong>Research Assistant</strong>, Institute of Statistical Science, Academia Sinica<br><span class="muted">Robust federated learning; ISSAS Poster Competition award</span></span></li>
+      <li><span class="when">2018 – 2020</span><span class="what"><strong>Data Scientist</strong>, Data-on-Demand</span></li>
+      <li><span class="when">2015 – 2017</span><span class="what"><strong>M.S. in Statistics</strong>, National Chengchi University</span></li>
+      <li><span class="when">2011 – 2015</span><span class="what"><strong>B.S. in Applied Mathematics</strong>, National Chiao Tung University</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-card">
+      <!-- Emails are written out instead of mailto links so spam bots cannot harvest them easily. -->
+      <div class="contact-emails">
+        <div>
+          <div class="contact-label">Academic Email</div>
+          <div class="contact-email">licz82 <span class="muted-at">AT</span> cs <span class="muted-at">DOT</span> utah <span class="muted-at">DOT</span> edu</div>
+        </div>
+        <div>
+          <div class="contact-label">General Email</div>
+          <div class="contact-email">cenjhih.li <span class="muted-at">AT</span> gmail <span class="muted-at">DOT</span> com</div>
+        </div>
+      </div>
+      <p>The best way to reach me is by email. I’m always happy to chat about my work and potential collaborations!</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 Cen-Jhih Li · Last updated November 2026</p>
+</footer>
+
+<script>
+  // "Abs" buttons expand or collapse the abstract that follows their button row.
+  document.querySelectorAll('.abs-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var abs = btn.parentElement.nextElementSibling;
+      var open = abs.hidden;
+      abs.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>
+
+</body>
+</html>
