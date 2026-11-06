@@ -1,0 +1,710 @@
+/* ---------- Theme ----------
+   To change colors, edit the Palette block. The glows, waves, shadows and tints
+   below are all mixed from it. */
+:root {
+  /* ----- Palette ----- */
+  --brand-1: #2aa8e8;
+  --brand-2: #3574e8;
+  --brand-3: #5a5be6;
+  --brand-4: #22b8a6;
+  --accent-ink: #1c45c9;          /* links (light mode) and the top-venue badge */
+  --accent-glow: #7cb4ff;         /* links (dark mode) */
+  --pill-1: #0d9488;              /* icons of the four link buttons */
+  --pill-2: #0284c7;
+  --pill-3: #2563eb;
+  --pill-4: #6366f1;
+
+  /* ----- Neutrals ----- */
+  --bg: #f3f2ef;
+  --surface: #ffffff;
+  --text: #24252c;
+  --muted: #60656f;
+  --border: #e6e4df;
+  --tag-bg: #26272e;              /* venue badges */
+  --content-w: 860px;             /* width of the top bar, page and footer content */
+  --topbar-bg: rgba(243, 242, 239, .9);
+  --topbar-wash: .12;             /* strength of the flowing color in the top bar */
+  --glow: 20%;                    /* strength of the light behind the photo */
+  --tint: 11%;                    /* strength of tinted boxes */
+
+  /* ----- Derived from the palette ----- */
+  --accent: var(--accent-ink);
+  --tag-strong-bg: var(--accent-ink);
+  --brand-mid: color-mix(in srgb, var(--brand-1), var(--brand-2));
+  --edge: var(--brand-mid);       /* left edge of boxes */
+  --callout-bg: linear-gradient(100deg,
+      color-mix(in srgb, var(--brand-1) var(--tint), var(--surface)),
+      color-mix(in srgb, var(--brand-3) calc(var(--tint) * .8), var(--surface)));
+  --grad: linear-gradient(100deg, var(--brand-1) 0%, var(--brand-2) 55%, var(--brand-3) 100%);
+  /* Same color at both ends so it loops without a seam. */
+  --brand-loop: linear-gradient(90deg, var(--brand-1), var(--brand-2) 25%, var(--brand-3) 50%, var(--brand-4) 75%, var(--brand-1));
+
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131317;
+    --surface: #1b1b21;
+    --text: #e7e7ea;
+    --muted: #a2a6af;
+    --border: #2b2b33;
+    --accent: var(--accent-glow);
+    --tag-bg: #3a3b45;
+    --topbar-bg: rgba(19, 19, 23, .9);
+    --topbar-wash: .3;
+    --glow: 16%;
+    --tint: 8%;
+  }
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+
+/* Icons from the sprite at the top of index.html, 1em tall, in the text color. */
+.icon-sprite { display: none; }
+.icon { display: inline-block; flex: none; height: 1em; width: auto; fill: currentColor; overflow: visible; }
+
+/* Anchor links stop below the sticky top bar. main.js sets --topbar-h. */
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h, 56px) + 16px); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.25; margin: 0; }
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1.1rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+section { margin: 3.2rem 0; }
+
+/* Gradient bar under section titles. It grows in when the section first scrolls into view. */
+section > h2 { position: relative; }
+section > h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 64px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--grad);
+}
+.js section > h2::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .7s cubic-bezier(.2, .7, .2, 1) .1s;
+}
+.js section.in-view > h2::after { transform: scaleX(1); }
+
+/* ---------- Top bar ----------
+   The palette slowly flows through the bar and the line under it. */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--topbar-bg);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.topbar::before,
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background: var(--brand-loop) 0 0 / 100vw 100% repeat-x;
+  animation: flow 12s linear infinite;
+}
+.topbar::before { top: 0; bottom: 0; z-index: -1; opacity: var(--topbar-wash); }
+.topbar::after { bottom: 0; height: 3px; }
+@keyframes flow { to { background-position: 100vw 0; } }
+
+/* Dark mode: the color fades up from the bottom line instead of filling the bar. */
+@media (prefers-color-scheme: dark) {
+  .topbar::before {
+    -webkit-mask-image: linear-gradient(to top, #000, transparent 85%);
+    mask-image: linear-gradient(to top, #000, transparent 85%);
+  }
+}
+
+.nav {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: .8rem 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Home icon */
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  padding: .2rem;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: color .15s;
+}
+.home-link:hover { color: var(--accent); text-decoration: none; }
+
+.nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.nav-links a { position: relative; color: var(--muted); font-size: .92rem; font-weight: 500; }
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ---------- Layout ---------- */
+.page { max-width: var(--content-w); margin: 0 auto; padding: 2.5rem 16px 1rem; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 184px;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 0;
+  padding: 2.5rem 2rem 3.25rem;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(380px 300px at 84% 50%, color-mix(in srgb, var(--brand-mid) var(--glow), transparent), transparent 70%),
+    radial-gradient(280px 220px at 64% 6%, color-mix(in srgb, var(--brand-3) calc(var(--glow) / 2), transparent), transparent 70%),
+    radial-gradient(260px 220px at 100% 100%, color-mix(in srgb, var(--brand-4) calc(var(--glow) * .7), transparent), transparent 70%),
+    var(--surface);
+}
+
+.hero h1 { font-size: 2.4rem; margin-bottom: .3rem; }
+.role { color: var(--muted); margin: 0 0 1.2rem; font-size: .98rem; }
+.role a { color: inherit; text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.role a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+.name-zh {
+  margin-left: .3em;
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  font-size: .55em;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.hero p { margin: 0 0 .9rem; }
+.bio p { margin: 0 0 1rem; }
+
+/* Waves: the palette gradient masked into a wave shape, two layers moving in
+   opposite directions. The mask is one long strip of 4 copies rather than a
+   repeating tile, since repeated tiles leave thin seams.
+   The dog in main.js follows this shape, so keep surface(), CREST and WAVE_COPIES
+   there in sync if the path changes. */
+.hero {
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 50 Q100 25 200 50 T400 50 T600 50 T800 50 T1000 50 T1200 50 T1400 50 T1600 50 T1800 50 T2000 50 T2200 50 T2400 50 T2600 50 T2800 50 T3000 50 T3200 50 V100 H0 Z'/%3E%3C/svg%3E");
+  --wave-fade: linear-gradient(to right, transparent 15%, #000 65%);
+}
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--brand-1), var(--brand-2) 50%, var(--brand-3));
+  -webkit-mask-image: var(--wave), var(--wave-fade);
+  mask-image: var(--wave), var(--wave-fade);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+/* Back wave: 720px per copy, drifts right. */
+.hero::before {
+  height: 130px;
+  opacity: .16;
+  -webkit-mask-size: 2880px 100%, 100% 100%;
+  mask-size: 2880px 100%, 100% 100%;
+  animation: wave-back 20s linear infinite;
+}
+/* Front wave: 520px per copy, drifts left and bobs. */
+.hero::after {
+  height: 96px;
+  opacity: .22;
+  -webkit-mask-size: 2080px 100%, 100% 100%;
+  mask-size: 2080px 100%, 100% 100%;
+  animation: wave-front 13s linear infinite, wave-bob 6s ease-in-out infinite alternate;
+}
+/* Paused while the hero is off screen (main.js adds .is-offscreen). */
+.hero.is-offscreen::before,
+.hero.is-offscreen::after,
+.hero.is-offscreen .avatar-wrap::before { animation-play-state: paused; }
+/* Each loop moves exactly one copy, so there is no jump when it restarts. */
+@keyframes wave-back {
+  from { -webkit-mask-position: -1440px 0, 0 0; mask-position: -1440px 0, 0 0; }
+  to { -webkit-mask-position: -720px 0, 0 0; mask-position: -720px 0, 0 0; }
+}
+@keyframes wave-front {
+  from { -webkit-mask-position: -520px 0, 0 0; mask-position: -520px 0, 0 0; }
+  to { -webkit-mask-position: -1040px 0, 0 0; mask-position: -1040px 0, 0 0; }
+}
+@keyframes wave-bob { to { transform: translateY(6px); } }
+
+/* Content sits above the waves. */
+.hero-text, .avatar-stage { position: relative; z-index: 1; }
+
+/* Photo lines up with the top of the name; the bottom margin leaves room for the dog. */
+.avatar-stage { align-self: start; margin-top: 8px; margin-bottom: 2.75rem; }
+
+/* The dog on the waves. main.js creates and moves it. */
+.wave-dog {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 60px;
+  height: 51px;
+  background: url("../img/malamute.png") center / contain no-repeat;
+  pointer-events: none;
+  transform-origin: 50% 97%;   /* the paws */
+  will-change: transform;
+}
+/* Thin light outline so it stands out on dark. */
+@media (prefers-color-scheme: dark) {
+  .wave-dog { filter: drop-shadow(0 0 .6px rgb(255 255 255 / .8)) drop-shadow(0 0 .6px rgb(255 255 255 / .8)); }
+}
+
+/* Photo: a palette-colored ring that slowly turns. */
+.avatar-wrap {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--brand-mid) 24%, transparent);
+}
+.avatar-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: -1;
+  background: conic-gradient(var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-4), var(--brand-1));
+  animation: spin 8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(1turn); } }
+
+.avatar {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.3rem; }
+
+/* Link buttons: each icon gets its own color, in the order of the buttons. */
+.pill {
+  --pc: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .7rem;
+  border: 1px solid color-mix(in srgb, var(--pc) 32%, var(--surface));
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: .88rem;
+  font-weight: 500;
+  transition: border-color .15s, background .15s;
+}
+.pill .icon { font-size: .95em; color: var(--pc); }
+.pill:hover { border-color: var(--pc); background: color-mix(in srgb, var(--pc) 7%, var(--surface)); text-decoration: none; }
+.links .pill:nth-child(1) { --pc: var(--pill-1); }
+.links .pill:nth-child(2) { --pc: var(--pill-2); }
+.links .pill:nth-child(3) { --pc: var(--pill-3); }
+.links .pill:nth-child(4) { --pc: var(--pill-4); }
+
+/* CV: white button with a gradient outline. */
+.pill-accent {
+  border: 1.5px solid transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--grad) border-box;
+  color: var(--accent);
+}
+.pill-accent .icon { color: var(--brand-2); }
+.pill-accent:hover {
+  background: linear-gradient(color-mix(in srgb, var(--brand-1) 9%, var(--surface)), color-mix(in srgb, var(--brand-3) 9%, var(--surface))) padding-box, var(--grad) border-box;
+  border-color: transparent;
+}
+
+/* ---------- Callout ---------- */
+.callout {
+  margin: 2rem 0 0;
+  padding: .9rem 1.1rem;
+  background: var(--callout-bg);
+  border-left: 3px solid var(--edge);
+  border-radius: 6px;
+  font-size: .95rem;
+}
+
+/* ---------- Research ---------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  display: flex;              /* keeps the link row at the bottom */
+  flex-direction: column;
+  box-shadow: 0 1px 3px rgb(20 20 40 / .05);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--grad);
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px color-mix(in srgb, var(--brand-mid) 14%, transparent); }
+.card h3 { font-size: 1.08rem; margin-bottom: .5rem; }
+.card p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+
+/* One-line summary above the cards. */
+.research-lead { margin: -.2rem 0 1.1rem; color: var(--muted); font-size: .98rem; }
+
+/* "Paper →" links under the research items. */
+.card .evidence { margin-top: auto; padding-top: .85rem; }
+.evidence { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .9rem; font-size: .84rem; font-weight: 600; }
+.evidence a { display: inline-flex; align-items: center; gap: .4rem; color: var(--accent); }
+.evidence a:hover { text-decoration: none; }
+.evidence a .icon { font-size: .85em; transition: transform .15s ease; }
+.evidence a:hover .icon { transform: translateX(3px); }
+
+/* "Other research" */
+.also {
+  margin-top: 1rem;
+  padding: .9rem 1.2rem .5rem;
+  border: 1px dashed color-mix(in srgb, var(--muted) 35%, var(--bg));
+  border-radius: 14px;
+}
+.also-label { margin-bottom: .2rem; font-size: .72rem; line-height: 1.65; }
+.also-list { list-style: none; margin: 0; padding: 0; }
+.also-list li {
+  display: grid;
+  grid-template-columns: 11.5rem 1fr auto;
+  gap: .2rem 1rem;
+  align-items: baseline;
+  padding: .3rem 0;
+}
+.also-list li + li { border-top: 1px dashed color-mix(in srgb, var(--muted) 22%, var(--bg)); }
+.also-title { font-family: var(--serif); font-weight: 700; font-size: .98rem; }
+.also-desc { color: var(--muted); font-size: .9rem; line-height: 1.5; }
+.also-list .evidence { justify-content: flex-end; white-space: nowrap; }
+
+/* ---------- News ---------- */
+.news { list-style: none; padding: 0; margin: 0; }
+.news li {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1rem;
+  padding: .45rem 0;
+}
+.date { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .92rem; }
+
+/* ---------- Small uppercase labels ---------- */
+.subhead, .also-label, .pub-sub-label, .contact-label {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Publications ---------- */
+.subhead { font-size: .8rem; margin: 1.6rem 0 .6rem; }
+.subhead:first-of-type { margin-top: 0; }
+
+.pubs { list-style: none; padding: 0; margin: 0; }
+.pubs li { padding: .8rem 0; border-bottom: 1px dashed var(--border); }
+.pubs li:last-child { border-bottom: 0; }
+
+.pub-title { font-weight: 600; }
+.pub-authors { color: var(--muted); font-size: .93rem; }
+.pub-authors b { color: var(--text); }
+.pub-venue { font-size: .9rem; color: var(--muted); margin-top: .15rem; }
+/* Paper buttons. Links and Abstract/BibTeX buttons share one style. */
+.pub-buttons { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .65rem; }
+.pub-btn {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  margin: 0;
+  padding: .25rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.pub-btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+/* Chevron that flips when the panel is open. */
+.pub-toggle::after {
+  content: "";
+  width: .38rem;
+  height: .38rem;
+  margin-top: -.15rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform .15s, margin .15s;
+}
+.pub-toggle[aria-expanded="true"] { background: color-mix(in srgb, var(--accent) 9%, var(--surface)); border-color: var(--accent); color: var(--accent); }
+.pub-toggle[aria-expanded="true"]::after { transform: rotate(-135deg); margin-top: .2rem; }
+
+/* Abstract and BibTeX panels */
+.abstract, .bibtex {
+  margin-top: .7rem;
+  padding: .9rem 1.1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--edge);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: .9rem;
+  line-height: 1.65;
+}
+
+/* Long BibTeX lines scroll inside the box on narrow screens. */
+.bibtex { position: relative; }
+.bibtex pre {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .78rem;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: .6rem;
+  right: .7rem;
+  padding: .15rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: .76rem;
+  font-weight: 500;
+  transition: border-color .15s, color .15s;
+}
+.copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Workshop version shown under the main paper. */
+.pub-sub { position: relative; margin: 1rem 0 0 1.1rem; padding-left: 1.4rem; }
+.pub-sub::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -.55rem;
+  width: .9rem;
+  height: 1.15rem;
+  border-left: 2px solid var(--border);
+  border-bottom: 2px solid var(--border);
+  border-bottom-left-radius: 6px;
+}
+.pub-sub-label { font-size: .72rem; }
+.pub-sub-title { font-weight: 600; font-size: .95rem; }
+
+/* Venue badges */
+.tag {
+  display: inline-block;
+  margin-right: .45rem;
+  padding: .05rem .5rem;
+  border-radius: 4px;
+  background: var(--tag-bg);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 600;
+}
+.tag-strong { background: var(--tag-strong-bg); }
+
+/* ---------- Lists ---------- */
+.plain { padding-left: 1.2rem; margin: 0; }
+.plain li { margin-bottom: .5rem; }
+
+.timeline { list-style: none; padding: 0; margin: 0; }
+.timeline li {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1rem;
+  padding: .55rem 0;
+}
+.when { color: var(--muted); font-size: .92rem; font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); font-size: .92rem; }
+
+/* ---------- Bio links & interests ---------- */
+.hero p a, .bio a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 3px;
+}
+.hero p a:hover, .bio a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+.interests {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .35rem 1rem;
+  margin: 1.1rem 0 0;
+  font-size: .93rem;
+}
+.interests dt { font-weight: 600; }
+.interests dd { margin: 0; color: var(--muted); }
+
+/* ---------- Contact ---------- */
+.contact-label { display: block; font-size: .74rem; }
+
+.contact-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--edge);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+}
+.contact-emails {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: .4rem 3rem;
+  margin-bottom: .4rem;
+}
+.contact-email {
+  margin: .25rem 0 .5rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.muted-at { color: var(--accent); font-family: var(--sans); font-size: .8em; font-weight: 600; }
+.contact-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+/* ---------- Footer ---------- */
+.footer {
+  max-width: var(--content-w);
+  margin: 2rem auto 0;
+  padding: 1.5rem 16px 2.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .85rem;
+}
+.footer p { margin: 0; }
+
+/* ---------- Mid-size screens ---------- */
+@media (min-width: 721px) and (max-width: 899px) {
+  .hero { grid-template-columns: 1fr 160px; gap: 1.5rem; padding: 2.2rem 1.5rem 3rem; }
+  .links { gap: .4rem; }
+  .hero .pill { padding: .28rem .6rem; font-size: .84rem; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    /* extra bottom room for the waves and the dog */
+    padding: 1.6rem 1.25rem 5.5rem;
+    background:
+      radial-gradient(320px 260px at 25% 12%, color-mix(in srgb, var(--brand-mid) var(--glow), transparent), transparent 70%),
+      radial-gradient(240px 200px at 85% 4%, color-mix(in srgb, var(--brand-3) calc(var(--glow) / 2), transparent), transparent 70%),
+      var(--surface);
+    /* full-width waves, since the photo is on top here */
+    --wave-fade: linear-gradient(#000, #000);
+  }
+  .hero::before { height: 100px; }
+  .hero::after { height: 74px; }
+  .avatar-stage { grid-row: 1; justify-self: start; margin-top: 0; margin-bottom: 0; }
+  .avatar-wrap { width: 160px; }
+  .wave-dog { width: 56px; height: 47px; }
+  .hero h1 { font-size: 2rem; }
+  .cards { grid-template-columns: 1fr; }
+  .also-list li { grid-template-columns: 1fr; gap: .1rem; padding: .55rem 0; }
+  .also-list .evidence { justify-content: flex-start; }
+  .news li, .timeline li { grid-template-columns: 1fr; gap: 0; }
+  .interests { grid-template-columns: 1fr; gap: 0; }
+  .interests dd { margin-bottom: .5rem; }
+  .contact-emails { grid-template-columns: 1fr; }
+  .nav { gap: .9rem; }
+  /* Links stay on one row and scroll sideways if needed. */
+  .nav-links {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: nowrap;
+    gap: 1.1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { flex: none; white-space: nowrap; font-size: .88rem; }
+}
+
+/* ---------- Cursor ----------
+   Custom pointer for clickable things; (11, 3) is the fingertip. */
+a[href], button, .pub-btn, .copy-btn { cursor: url("../img/cursor.svg") 11 3, pointer; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .topbar::before, .topbar::after, .hero::before, .hero::after, .avatar-wrap::before { animation: none; }
+  .js section > h2::after { transition: none; }
+  .card, .card:hover { transition: none; transform: none; }
+}

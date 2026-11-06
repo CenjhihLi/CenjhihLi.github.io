@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Add any new outside domain (analytics, embeds) to this policy. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Cen-Jhih Li (李岑志)</title>
+  <meta name="description" content="Cen-Jhih Li, PhD student at the University of Utah working on efficient LLM training and inference.">
+  <!-- Tab icon. Other versions are in the same folder (dog, dog-photo). -->
+  <link rel="icon" href="assets/img/favicon/cl-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/img/favicon/cl.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/favicon/cl-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <!-- Bump ?v= after editing these files. -->
+  <link rel="stylesheet" href="assets/css/style.css?v=0">
+  <script src="assets/js/main.js?v=0"></script>
+</head>
+<body id="top">
+
+<!-- Icons: Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
+     License - https://fontawesome.com/license/free (Icons: CC BY 4.0) Copyright 2023 Fonticons, Inc. -->
+<svg class="icon-sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-envelope" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></symbol>
+  <symbol id="i-graduation-cap" viewBox="0 0 640 512"><path d="M320 32c-8.1 0-16.1 1.4-23.7 4.1L15.8 137.4C6.3 140.9 0 149.9 0 160s6.3 19.1 15.8 22.6l57.9 20.9C57.3 229.3 48 259.8 48 291.9v28.1c0 28.4-10.8 57.7-22.3 80.8c-6.5 13-13.9 25.8-22.5 37.6C0 442.7-.9 448.3 .9 453.4s6 8.9 11.2 10.2l64 16c4.2 1.1 8.7 .3 12.4-2s6.3-6.1 7.1-10.4c8.6-42.8 4.3-81.2-2.1-108.7C90.3 344.3 86 329.8 80 316.5V291.9c0-30.2 10.2-58.7 27.9-81.5c12.9-15.5 29.6-28 49.2-35.7l157-61.7c8.2-3.2 17.5 .8 20.7 9s-.8 17.5-9 20.7l-157 61.7c-12.4 4.9-23.3 12.4-32.2 21.6l159.6 57.6c7.6 2.7 15.6 4.1 23.7 4.1s16.1-1.4 23.7-4.1L624.2 182.6c9.5-3.4 15.8-12.5 15.8-22.6s-6.3-19.1-15.8-22.6L343.7 36.1C336.1 33.4 328.1 32 320 32zM128 408c0 35.3 86 72 192 72s192-36.7 192-72L496.7 262.6 354.5 314c-11.1 4-22.8 6-34.5 6s-23.5-2-34.5-6L143.3 262.6 128 408z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></symbol>
+  <symbol id="i-file-lines" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+  <symbol id="i-house" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></symbol>
+</svg>
+
+<header class="topbar">
+  <nav class="nav">
+    <a class="home-link" href="#top" aria-label="Home" title="Home"><svg class="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><use href="#i-house"/></svg></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+
+  <!-- ============ HEADER ============ -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Cen-Jhih Li <span class="name-zh" lang="zh-Hant">李岑志</span></h1>
+      <p class="role">Ph.D. Student in Computer Science<br><a href="https://www.cs.utah.edu/">Kahlert School of Computing, University of Utah</a></p>
+
+      <dl class="interests">
+        <dt>Research interests</dt>
+        <dd>Efficient Inference, KV-Cache Compression, Speculative Decoding, Parameter-Efficient Fine-Tuning, GPU Kernels</dd>
+        <dt>Other interests</dt>
+        <dd>Food, travel, gaming, reading, cats&nbsp;and&nbsp;dogs</dd>
+      </dl>
+
+      <div class="links">
+        <a class="pill" href="#contact"><svg class="icon" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg>Contact</a>
+        <a class="pill" href="https://scholar.google.com/citations?user=SAtEvggAAAAJ"><svg class="icon" viewBox="0 0 640 512" aria-hidden="true" focusable="false"><use href="#i-graduation-cap"/></svg>Google Scholar</a>
+        <a class="pill" href="https://github.com/CenjhihLi"><svg class="icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><use href="#i-github"/></svg>GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/cen-jhih-li-392aa6173/"><svg class="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><use href="#i-linkedin"/></svg>LinkedIn</a>
+        <a class="pill pill-accent" href="Cen_Jhih_Li_CV.pdf"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><use href="#i-file-lines"/></svg>CV</a>
+      </div>
+    </div>
+
+    <div class="avatar-stage"><div class="avatar-wrap"><img class="avatar" src="assets/img/profile.jpg" alt="Cen-Jhih Li"></div></div>
+  </section>
+
+  <div class="callout">
+    <strong>On the job market.</strong>
+    I am looking for internships and full-time positions in efficient LLM training and inference.
+    Roles include, but are not limited to, research scientist / research engineer /
+    applied scientist / machine learning engineer. Location is flexible.
+    Feel free to <a href="#contact">reach out</a>.
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="bio">
+    <h2>About Me</h2>
+    <p>
+      Hi! I’m Cen-Jhih, and you can also call me Steven. I’m a Ph.D. student at the Kahlert School of
+      Computing, University of Utah. I’m fortunate
+      to be advised by <a href="https://users.cs.utah.edu/~bhaskara/">Prof. Aditya Bhaskara</a>.
+      Before my Ph.D., I was a research assistant at the
+      <a href="https://www.stat.sinica.edu.tw/eng/">Institute of Statistical Science, Academia Sinica</a>,
+      where I worked with <a href="https://staff.stat.sinica.edu.tw/syhuang/">Prof. Su-Yun Huang</a>
+      on robust aggregation for federated learning. I also worked as a data scientist at Data-on-Demand,
+      applying machine learning to business decisions for clients. I received my M.S. in Statistics from
+      <a href="https://stat.nccu.edu.tw/">National Chengchi University</a>, where I worked on
+      missing-not-at-random data with
+      <a href="https://business.purdue.edu/directory/bio.php?username=ktang">Prof. Kwei Tang</a> and
+      <a href="https://stat.nccu.edu.tw/en/members/members1/TSUNG-CHI-CHENG-75202400">Prof. Tsung-Chi Cheng</a>,
+      and my B.S. in
+      <a href="https://www.math.nycu.edu.tw/introduction/e_index.php">Applied Mathematics from National Chiao Tung University</a>.
+    </p>
+    <p>
+      I’m broadly interested in utilizing algorithmic and mathematical/statistical approaches to solve
+      real-world problems, especially making large language models more efficient to adapt and serve
+      without sacrificing quality. My current research focuses on accelerating LLM inference, especially for
+      long contexts, including better indexers for sparse attention, cpu offload, and speculative decoding. 
+      I’m also familiar with KV-cache quantization. Beyond algorithm design, I optimize GPU kernels with tools 
+      such as Triton to achieve real speedups and make these methods practical.
+      Previously, I worked on structured sparse fine-tuning for quantized LLMs (TMLR 2025) and studied
+      how LLMs utilize context in in-context learning. I also enjoy following the open-source training
+      and inference ecosystem, including PyTorch, vLLM, and llama.cpp, and I’m interested in bringing
+      my methods into these frameworks.
+    </p>
+  </section>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research">
+    <h2>Research</h2>
+    <p class="research-lead">My work centers on making LLMs cheaper to adapt and faster to serve.</p>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Efficient LLM Inference</h3>
+        <p>KV-cache compression and inference acceleration, including sparse attention, cpu offload, 
+          quantization, speculative decoding, and KV-cache eviction. The goal is to reduce memory traffic 
+          and latency during decoding. I am also interested in practical kernel design to build systems 
+          that achieve real inference speedups.</p>
+      </article>
+      <article class="card">
+        <h3>Memory-Efficient Adaptation</h3>
+        <p>Adapting LLMs to downstream tasks with low memory overhead, including parameter-efficient
+          fine-tuning (e.g., LoRA, QLoRA, and sparse fine-tuning), zeroth-order optimization, and
+          low-quantization-error initialization for adapting quantized LLMs.</p>
+        <div class="evidence">
+          <a href="#pub-tmlr" aria-label="Paper: An Efficient Sparse Fine-Tuning with Low Quantization Error (TMLR 2025)">Paper<svg class="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="also">
+      <h3 class="also-label">Other research</h3>
+      <ul class="also-list">
+        <li>
+          <span class="also-title">Context Utilization</span>
+          <span class="also-desc">How do LLMs utilize context, and what kind of context helps them most?</span>
+          <span class="evidence"><a href="#pub-res" aria-label="Paper: Revisiting What Makes a Good Context Subset (arXiv 2026)">Paper<svg class="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></span>
+        </li>
+        <li>
+          <span class="also-title">AI4Science</span>
+          <span class="also-desc">Studying how to utilize neural networks to solve PDEs for real-world applications.</span>
+          <span class="evidence"><a href="#pub-pde" aria-label="Paper: two PDE papers under review">Paper<svg class="icon" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ NEWS ============ -->
+  <section id="news">
+    <h2>News</h2>
+    <ul class="news">
+      <li><span class="date">Nov 2026</span><span>New preprint on context selection for LLMs is now on <a href="https://arxiv.org/abs/2611.19220"><strong>arXiv</strong></a>.</span></li>
+      <li><span class="date">Nov 2025</span><span>Paper on sparse fine-tuning with low quantization error published in <strong>TMLR</strong>.</span></li>
+      <li><span class="date">Jul 2025</span><span>Paper presented at the <strong>ES-FoMo Workshop @ ICML 2025</strong>.</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ PUBLICATIONS ============ -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <h3 class="subhead">Under Submission &amp; Preprint</h3>
+    <ol class="pubs">
+      <li id="pub-pde">
+        <div class="pub-title">Pretraining Design Drives Gains in Zero-Shot PDE Rollouts</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, Tahmid Awal, Hari Sundar, Aditya Bhaskara</div>
+      </li>
+      <li>
+        <div class="pub-title">Tunable Non-linear Manifold ROMs for PDEs via Matrix-Free Petrov–Galerkin Projection</div>
+        <div class="pub-authors">Tahmid Awal, <b>Cen-Jhih Li</b>, Aditya Bhaskara, Hari Sundar</div>
+      </li>
+      <li id="pub-res">
+        <div class="pub-title">Revisiting What Makes a Good Context Subset: A Sparse Latent Basis Perspective</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, Siddhant Chaudhary, Aditya Bhaskara</div>
+        <div class="pub-buttons">
+          <button type="button" class="pub-btn pub-toggle" aria-expanded="false" aria-controls="abs-res">Abstract</button>
+          <button type="button" class="pub-btn pub-toggle" aria-expanded="false" aria-controls="bib-res">BibTeX</button>
+          <a class="pub-btn" href="https://arxiv.org/abs/2611.19220">arXiv</a>
+        </div>
+        <div class="abstract" id="abs-res" hidden>
+          Selecting context subsets is increasingly important in modern LLM inference, yet what makes a subset
+          effective remains unclear. We study this question in the controlled setting of few-shot demonstration
+          selection. We examine a hypothesis that demonstrations should collectively provide task-relevant
+          information needed by a target query. Assuming that the query representation provides a useful proxy
+          for these requirements, we formulate selection as sparse reconstruction and instantiate it with
+          Residual Explanation Search (RES), a Matching-Pursuit-style diagnostic procedure. Across seven
+          benchmarks and eight open-weight LLMs, no retrieval objective is universally best. RES outperforms MMR
+          in 34 of 56 model–dataset pairs, with its clearest advantage on sentiment tasks, suggesting that
+          query-conditioned collective reconstruction may capture useful complementarity that pairwise
+          dissimilarity misses. Relevance-based retrieval remains strong on template-heavy reasoning benchmarks,
+          while all retrieval methods underperform zero-shot prediction on average on StrategyQA, where a
+          solution-reconstruction analysis is consistent with the query not exposing the required external
+          knowledge. Target-model hidden states further show that retrieval objectives interact differently with
+          representation spaces: middle-layer representations generally favor similarity retrieval, whereas
+          last-layer representations are often stronger for residual- and diversity-based selection. These
+          findings support a conditional, representation-dependent account of context subset quality rather
+          than a universally superior selector.
+        </div>
+        <div class="bibtex" id="bib-res" hidden>
+          <button type="button" class="copy-btn">Copy</button>
+<pre>
+@misc{li2026revisiting,
+  title={Revisiting What Makes a Good Context Subset: A Sparse Latent Basis Perspective},
+  author={Li, Cen-Jhih and Chaudhary, Siddhant and Bhaskara, Aditya},
+  year={2026},
+  eprint={2611.19220},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2611.19220}
+}</pre>
+        </div>
+      </li>
+    </ol>
+
+    <h3 class="subhead">Published</h3>
+    <ol class="pubs">
+      <li id="pub-tmlr">
+        <div class="pub-title">An Efficient Sparse Fine-Tuning with Low Quantization Error via Neural Network Pruning</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, Aditya Bhaskara</div>
+        <div class="pub-venue"><span class="tag tag-strong">TMLR 2025</span> Transactions on Machine Learning Research</div>
+        <div class="pub-buttons">
+          <button type="button" class="pub-btn pub-toggle" aria-expanded="false" aria-controls="abs-tmlr">Abstract</button>
+          <button type="button" class="pub-btn pub-toggle" aria-expanded="false" aria-controls="bib-tmlr">BibTeX</button>
+          <a class="pub-btn" href="https://arxiv.org/abs/2502.11439">arXiv</a>
+          <a class="pub-btn" href="https://openreview.net/forum?id=w3b67v5EzD">OpenReview</a>
+          <a class="pub-btn" href="https://github.com/CenjhihLi/sparsity_finetuning">Code</a>
+          <a class="pub-btn" href="https://www.linkedin.com/feed/update/urn:li:activity:7499701079216087040/">Post: Overview</a>
+          <a class="pub-btn" href="https://www.linkedin.com/feed/update/urn:li:activity:7521259297050370048/">Post: Zeroth-Order</a>
+        </div>
+        <div class="abstract" id="abs-tmlr" hidden>
+          Fine-tuning is an important step in adapting foundation models such as large language models to
+          downstream tasks. To make this step more accessible to users with limited computational budgets,
+          it is crucial to develop fine-tuning methods that are memory and computationally efficient. Sparse
+          Fine-tuning (SpFT) and Low-rank adaptation (LoRA) are two frameworks that have emerged for
+          addressing this problem and have been adopted widely in practice. In this work, we develop a new
+          SpFT framework, based on ideas from neural network pruning. At a high level, we first identify
+          "important" neurons/nodes using feature importance metrics from network pruning (specifically, we
+          use the structural pruning method), and then perform fine-tuning by restricting to weights
+          involving these neurons. Experiments on common language tasks show our method improves SpFT's
+          memory efficiency by 20–50% while matching the accuracy of state-of-the-art methods like LoRA's
+          variants.
+        </div>
+        <div class="bibtex" id="bib-tmlr" hidden>
+          <button type="button" class="copy-btn">Copy</button>
+<pre>
+@article{li2025efficient,
+  title={An Efficient Sparse Fine-Tuning with Low Quantization Error via Neural Network Pruning},
+  author={Li, Cen-Jhih and Bhaskara, Aditya},
+  journal={Transactions on Machine Learning Research},
+  issn={2835-8856},
+  year={2025},
+  url={https://openreview.net/forum?id=w3b67v5EzD}
+}</pre>
+        </div>
+
+        <div class="pub-sub">
+          <div class="pub-sub-label">Preliminary workshop version</div>
+          <div class="pub-sub-title">An Efficient Row-Based Sparse Fine-Tuning with Low Quantization Error</div>
+          <div class="pub-venue"><span class="tag">ICML 2025 Workshop</span> ES-FoMo III</div>
+          <div class="pub-buttons">
+            <a class="pub-btn" href="https://openreview.net/forum?id=HIBMFO87Cu">OpenReview</a>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="pub-title">Robust Aggregation for Federated Learning by Minimum γ-Divergence Estimation</div>
+        <div class="pub-authors"><b>Cen-Jhih Li</b>, P.-H. Huang, Y.-T. Ma, H. Hung, Su-Yun Huang</div>
+        <div class="pub-venue"><span class="tag">Entropy 2022</span> Entropy, 24(5), 686</div>
+        <div class="pub-buttons">
+          <button type="button" class="pub-btn pub-toggle" aria-expanded="false" aria-controls="abs-entropy">Abstract</button>
+          <button type="button" class="pub-btn pub-toggle" aria-expanded="false" aria-controls="bib-entropy">BibTeX</button>
+          <a class="pub-btn" href="https://www.mdpi.com/1099-4300/24/5/686">Paper</a>
+          <a class="pub-btn" href="https://github.com/CenjhihLi/gamma_mean_robust_federated_learning">Code</a>
+          <a class="pub-btn" href="https://www.linkedin.com/feed/update/urn:li:activity:7502809398570995712/">Post</a>
+        </div>
+        <div class="abstract" id="abs-entropy" hidden>
+          Federated learning is a framework for multiple devices or institutions, called local clients, to
+          collaboratively train a global model without sharing their data. For federated learning with a
+          central server, an aggregation algorithm integrates model information sent from local clients to
+          update the parameters for a global model. Sample mean is the simplest and most commonly used
+          aggregation method. However, it is not robust for data with outliers or under the Byzantine
+          problem, where Byzantine clients send malicious messages to interfere with the learning process.
+          Some robust aggregation methods were introduced in literature including marginal median, geometric
+          median and trimmed-mean. In this article, we propose an alternative robust aggregation method,
+          named γ-mean, which is the minimum divergence estimation based on a robust density power
+          divergence. This γ-mean aggregation mitigates the influence of Byzantine clients by assigning fewer
+          weights. This weighting scheme is data-driven and controlled by the γ value. Robustness from the
+          viewpoint of the influence function is discussed and some numerical results are presented.
+        </div>
+        <div class="bibtex" id="bib-entropy" hidden>
+          <button type="button" class="copy-btn">Copy</button>
+<pre>
+@article{li2022robust,
+  title={Robust Aggregation for Federated Learning by Minimum {$\gamma$}-Divergence Estimation},
+  author={Li, Cen-Jhih and Huang, Pin-Han and Ma, Yi-Ting and Hung, Hung and Huang, Su-Yun},
+  journal={Entropy},
+  volume={24},
+  number={5},
+  pages={686},
+  year={2022},
+  doi={10.3390/e24050686},
+  url={https://www.mdpi.com/1099-4300/24/5/686}
+}</pre>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ OPEN SOURCE ============ -->
+  <section id="open-source">
+    <h2>Open-Source Contributions</h2>
+    <ul class="plain">
+      <li><strong>FastChat</strong>: integrated the google.genai API into a widely used LLM-as-a-judge evaluation toolkit, adding support for Gemini 2.5 as a judge model. <a href="https://github.com/lm-sys/FastChat/pull/3751">PR #3751</a></li>
+      <li><strong>OpenICL</strong>: updated compatibility with recent versions of Hugging Face Transformers. <a href="https://github.com/Shark-NLP/OpenICL/pull/31">PR #31</a></li>
+    </ul>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <h2>Experience &amp; Education</h2>
+    <ul class="timeline">
+      <li><span class="when">2022 – present</span><span class="what"><strong>Ph.D. in Computer Science</strong>, University of Utah<br><span class="muted">Advisor: Prof. Aditya Bhaskara</span></span></li>
+      <li><span class="when">2020 – 2022</span><span class="what"><strong>Research Assistant</strong>, Institute of Statistical Science, Academia Sinica<br><span class="muted">Robust federated learning; ISSAS Poster Competition award</span></span></li>
+      <li><span class="when">2018 – 2020</span><span class="what"><strong>Data Scientist</strong>, Data-on-Demand</span></li>
+      <li><span class="when">2015 – 2017</span><span class="what"><strong>M.S. in Statistics</strong>, National Chengchi University</span></li>
+      <li><span class="when">2011 – 2015</span><span class="what"><strong>B.S. in Applied Mathematics</strong>, National Chiao Tung University</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-card">
+      <div class="contact-emails">
+        <div>
+          <div class="contact-label">Academic Email</div>
+          <div class="contact-email">licz82 <span class="muted-at">AT</span> cs <span class="muted-at">DOT</span> utah <span class="muted-at">DOT</span> edu</div>
+        </div>
+        <div>
+          <div class="contact-label">General Email</div>
+          <div class="contact-email">cenjhih.li <span class="muted-at">AT</span> gmail <span class="muted-at">DOT</span> com</div>
+        </div>
+      </div>
+      <p>The best way to reach me is by email. I’m always happy to chat about my work and potential collaborations!</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>© <span data-published-year>2026</span> Cen-Jhih Li · Last updated <span data-last-updated>November 2026</span></p>
+</footer>
+
+</body>
+</html>
